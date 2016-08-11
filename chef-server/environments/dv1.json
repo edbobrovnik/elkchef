@@ -1,0 +1,12 @@
+{
+  "name": "dv1",
+  "description": "DV1 dev environment",
+  "json_class": "Chef::Environment",
+  "chef_type": "environment",
+  "override_attributes" : {
+    "elasticsearch" : {
+       "networkhost" : "192.168.19.91",
+       "envname" : "DV1"
+    }
+  }
+}

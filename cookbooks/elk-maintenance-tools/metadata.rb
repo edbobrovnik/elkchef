@@ -1,0 +1,8 @@
+name 'elk-maintenance-tools'
+maintainer 'Ed Babrounik'
+maintainer_email 'eduard.babrounik@minsk.finfactory.com'
+license 'all_rights'
+description 'Installs/Configures elk-maintenance-tools'
+long_description 'Installs/Configures utilities for elasticsearch/logstash/kibana  housekeeping: removes old indicies from Elastic, configures log rotation.'
+depends 'cron'
+version '0.1.0'

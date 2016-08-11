@@ -1,0 +1,28 @@
+[
+  {
+    "_id": "<%= node.chef_environment.upcase %>-MW-LOGS",
+    "_type": "search",
+    "_source": {
+      "title": "<%= node.chef_environment.upcase %>-MW-LOGS",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "logtimestamp",
+        "severity",
+        "thread",
+        "session_id",
+        "application",
+        "javaclass",
+        "logmessage"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"<%= node.chef_environment %>-mw-client-backend-*\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[],\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"require_field_match\":false,\"fragment_size\":2147483647}}"
+      }
+    }
+  }
+]

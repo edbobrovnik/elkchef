@@ -1,0 +1,8 @@
+name 'elasticsearch-curator'
+maintainer 'Ed Babrounik'
+maintainer_email 'eduard.babrounik@minsk.finfactory.com'
+license 'all_rights'
+description 'Installs/Configures elasticsearch-curator'
+long_description 'Installs/Configures the latest elasticsearch-curator version from its yum repository. Schedules curator runs for periodic cleansing of outdated elasticsearch indicies.'
+depends 'elasticsearch'
+version '0.1.0'

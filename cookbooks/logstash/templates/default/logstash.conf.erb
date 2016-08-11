@@ -1,0 +1,81 @@
+input {
+  file {
+    type => "applogs"
+    path => "<%= node['logstash']['application_logs_path_pattern'] %>"
+    start_position => "beginning"
+    codec => multiline {
+      pattern => "^[0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3} "
+      negate => true
+      what => "previous"
+    }
+  }
+
+  file {  
+    type => "payaralogs"
+    path => "<%= node['logstash']['payara_logs_path_pattern'] %>"
+    start_position => "beginning"
+    codec => multiline {
+      pattern => "^\[[0-9]{4}\-[0-9]{2}\-[0-9]{2}T[0-9]{2}\:[0-9]{2}:[0-9]{2}\.[0-9]{3}\+[0-9]{4}\] "
+      negate => true
+      what => "previous"
+    } 
+  }
+  
+  http_poller {
+    type => "heartbeat"
+    urls => {
+    <% node['logstash']['heartbeat_ping_appnames'].each do |appname|  %> 
+       <%= "#{appname} => \"http://#{node.chef_environment}#{node['logstash']['devserversuffixname']}/#{appname}/api/public/ping\"" %>
+    <% end %>
+    }
+    interval => 60
+    codec => plain
+ }
+}
+
+filter {
+ if [type] == "applogs" {
+  grok {
+     match => {"message" => "(?<logtimestamp>[0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{3}) (?<thread>\[.*\]).* %{LOGLEVEL:severity} \ *(?<session_id>[a-zA-Z0-9\-_\(\)]*) \ *%{JAVACLASS:javaclass} - (?<logmessage>.*)"}
+     match => {"path" => "%{GREEDYDATA}/%{GREEDYDATA:application}\.log"}
+     match => { "logmessage" => "^REST response - http code: (?<rest-httpcode>[0-9]{3})\, response time: %{NUMBER:rest-response-time:int} ms\, CPU: %{NUMBER:rest-cpu:int} us\, URL: (?<rest-url>[\da-zA-Z\-\/]+).*$"  }
+     match => { "logmessage" => "^.*\{\"systemId\"\:\"AUTH\"\,\"externalId\"\:\"[\d]+\"\,\"to\"\:\"(?<tel-number>\+[0-9]{6,})\",\"body\":\"(?<sms-base64>[a-zA-Z0-9\=\_\/\+]+)\"\}$"}
+     match => { "logmessage" => "^.*\{\"systemId\"\:\"AUTH\"\,\"cc\"\:\[.*\]\,\"bcc\"\:\[.*\]\,\"subject\"\:\"Opoqo\ registration\"\,\"mime\"\:\"html\",\"externalId\":\"[0-9]+\"\,\"body\"\:\"(?<email-base64-text>[a-zA-Z0-9\=\_\/\+]+)\"\,.*\,\"from\"\:\"dev\@opoqodev\.com\"\,\"to\"\:\[\"(?<email-to-addr>[a-zA-Z0-9_.+-=:]+\@[a-zA-Z0-9_.+-=:]+)\"\]\}$"}     
+     match => {"logmessage" => "^Response time for (?<cbs-daomethod-call>(?<cbs-dao>.*)\.(?<cbs-dao-method>.*))\ -\ %{NUMBER:cbs-method-resp-time:int}\ ms$"}
+     break_on_match => false
+  }
+ }
+ 
+ if [type] == "payaralogs" {
+   grok {
+     match => { "message" => "(?<payaralogtimestamp>\[[0-9]{4}\-[0-9]{2}\-[0-9]{2}T[0-9]{2}\:[0-9]{2}\:[0-9]{2}\.[0-9]{3}\+[0-9]{4}\])\ (?<server-version>\[[\w\d\s\.]*\])\ (?<loglevel>\[(SEVERE|WARNING|INFO|CONFIG|FINE|FINER|FINEST)\])\ \[(?<jmxagent>[\w\d\s\.\-]*)\]\ \[%{JAVACLASS:payaramodule}\]\ \[(?<thread>[\w\d\s\.\=\-\_\:\(\)]*)\]\ \[timeMillis\:\ (?<appserver-time-millis>[0-9]*)\]\ \[levelValue\:\ [0-9]*\](\ \[CLASSNAME\:\ %{JAVACLASS:class}\])?(\ \[METHODNAME:\ (?<method>[\d\w]*)\])?\ (?<logmessage>(\n|.)*)"  }
+   break_on_match => false
+  }
+ }  
+}
+
+output {
+ if [type] == "applogs" {
+  elasticsearch {
+   hosts=> ["<%= node['elasticsearch']['networkhost'] %>:9200"]
+   index => "<%= node.chef_environment %>-mw-client-backend-%{+YYYY.MM.dd}"
+  }
+ }
+
+
+ if [type] == "heartbeat" {
+  elasticsearch {
+   hosts=> ["<%=  node['elasticsearch']['networkhost'] %>:9200"]
+   index => "<%= node.chef_environment %>-heartbeat"
+   document_id => "%{name}"
+  }
+ }
+
+  if [type] == "payaralogs" {
+   elasticsearch {
+     hosts=> ["<%= node['elasticsearch']['networkhost'] %>:9200"]
+     index => "<%= node.chef_environment %>-mw-payara-logs-%{+YYYY.MM.dd}"
+   }
+ }
+}
+

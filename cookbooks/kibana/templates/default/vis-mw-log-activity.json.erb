@@ -1,0 +1,16 @@
+[
+  {
+    "_id": "<%= node.chef_environment.upcase %>-MW-LOG-ACTIVITY",
+    "_type": "visualization",
+    "_source": {
+      "title": "<%= node.chef_environment.upcase %>-MW-LOG-ACTIVITY",
+      "visState": "{\"title\":\"<%= node.chef_environment.upcase %>-MW-LOG-ACTIVITY\",\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"scale\":\"linear\",\"mode\":\"grouped\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"log records per 30 seconds\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"<%= node.chef_environment %>-mw-client-backend-*\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+      }
+    }
+  }
+]

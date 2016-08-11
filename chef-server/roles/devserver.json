@@ -1,0 +1,15 @@
+{
+  "name": "devserver",
+  "description": "Development Team Server",
+  "json_class": "Chef::Role",
+  "chef_type": "role",
+  "run_list": [
+    "java_se",
+    "logstash",
+    "elasticsearch",
+    "kibana",
+    "marvel",
+    "elasticsearch-curator",
+    "elk-maintenance-tools"
+ ]
+}

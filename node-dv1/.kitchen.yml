@@ -1,0 +1,19 @@
+---
+driver:
+  name: vagrant
+
+provisioner:
+  name: shell 
+
+platforms:
+  - name: centos-7.1
+    driver:
+      network:
+      - ["private_network", {ip: "192.168.19.91"}]
+      customize:
+        memory: 1024
+
+suites:
+  - name: node-dv1 
+    run_list:
+    attributes:

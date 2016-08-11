@@ -1,0 +1,7 @@
+name 'elasticsearch'
+maintainer 'Ed Babrounik'
+maintainer_email 'eduard.babrounik@minsk.finfactory.com'
+license 'all_rights'
+description 'Installs/Configures elasticsearch'
+long_description 'Installs/Configures latest elasticsearch from its yum repo.'
+version '0.1.0'
