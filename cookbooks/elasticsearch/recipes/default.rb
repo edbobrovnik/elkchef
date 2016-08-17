@@ -38,6 +38,9 @@ directory '/vol/data/log' do
   not_if do ::File.exist?('/vol/data/log') end
 end
 
+
+ENV['KILL_ON_STOP_TIMEOUT']='1'
+
 service "logstash-stop" do
   service_name "logstash"
   action :stop

@@ -4,14 +4,14 @@
         "_default_": {
             "_all": {
                 "enabled": true,
-                "omit_norms": true
+                "omit_norms": false
             },
             "dynamic_templates": [
                 {
                     "message_field": {
                         "mapping": {
                             "fielddata": {
-                                "format": "disabled"
+                                "format": "enabled"
                             },
                             "fields": {
                                 "raw": {
@@ -21,7 +21,7 @@
                                 }
                             },
                             "index": "analyzed",
-                            "omit_norms": true,
+                            "omit_norms": false,
                             "type": "string"
                         },
                         "match": "message",
@@ -32,7 +32,7 @@
                     "string_fields": {
                         "mapping": {
                             "fielddata": {
-                                "format": "disabled"
+                                "format": "enabled"
                             },
                             "fields": {
                                 "raw": {
@@ -43,7 +43,7 @@
                                 }
                             },
                             "index": "analyzed",
-                            "omit_norms": true,
+                            "omit_norms": false,
                             "type": "string"
                         },
                         "match": "*",
@@ -173,6 +173,11 @@
                     "doc_values": true,
                     "index": "not_analyzed",
                     "type": "string"
+                },
+                "title": {
+                     "doc_values": true,
+                     "index":"not_analyzed",
+                     "type":"string"
                 }
             }
         }

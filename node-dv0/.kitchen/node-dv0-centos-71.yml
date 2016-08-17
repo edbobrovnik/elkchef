@@ -1,0 +1,6 @@
+---
+hostname: 127.0.0.1
+port: '2200'
+username: vagrant
+ssh_key: "/Users/edb/playground/elkchef/node-dv0/.kitchen/kitchen-vagrant/kitchen-node-dv0-node-dv0-centos-71/.vagrant/machines/default/virtualbox/private_key"
+last_action: create
