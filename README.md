@@ -42,3 +42,9 @@ kitchen create   #from chef-server, node-dv0, node-dv1
 knife client list   # to ensure connection to chef server is up and running
 
 
+========================
+Install
+
+chef-client -o "role[devserver]" -E dv0  -z
+
+

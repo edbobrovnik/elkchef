@@ -2,14 +2,19 @@ input {
   
   pipe {
    type => "oradebuglogs"
-   command => "eval $(ssh-agent -s); ssh-add /opt/logstash/.ssh/id_rsa; ssh  -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null  <%= node['logstash']['oracle_logview_user']%>@<%= node['logstash']['oraclelog_server_ip'] %> tail -f <%= node['logstash']['oracle_logs_path'] %>/`date +'%Y/%m/%d'`/oracle/oracle-debug"
+   command => "eval $(ssh-agent -s); ssh-add /opt/logstash/.ssh/id_rsa; ssh  -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null  <%= node['logstash']['oracle_logview_user']%>@<%= node['logstash']['oraclelog_server_ip'] %> tail -f <%= node['logstash']['oracle_logs_path'] %>/`date +'%Y/%m/%d'`/oracle/oracle-debug ; ssh-agent -k"
   } 
  
   pipe {
    type => "oraexceptlogs"
-   command => "eval $(ssh-agent -s); ssh-add /opt/logstash/.ssh/id_rsa; ssh  -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null  <%= node['logstash']['oracle_logview_user']%>@<%= node['logstash']['oraclelog_server_ip'] %> tail -f <%= node['logstash']['oracle_logs_path'] %>/`date +'%Y/%m/%d'`/oracle/oracle-exception"
+   command => "eval $(ssh-agent -s); ssh-add /opt/logstash/.ssh/id_rsa; ssh  -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null  <%= node['logstash']['oracle_logview_user']%>@<%= node['logstash']['oraclelog_server_ip'] %> tail -f <%= node['logstash']['oracle_logs_path'] %>/`date +'%Y/%m/%d'`/oracle/oracle-exception | grep -v '(xbeg parameters:' ; ssh-agent -k "
   }
-
+  
+  pipe {
+   type => "oraexceptparamslogs"
+   command => "eval $(ssh-agent -s); ssh-add /opt/logstash/.ssh/id_rsa; ssh  -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o GlobalKnownHostsFile=/dev/null  <%= node['logstash']['oracle_logview_user']%>@<%= node['logstash']['oraclelog_server_ip'] %> tail -f <%= node['logstash']['oracle_logs_path'] %>/`date +'%Y/%m/%d'`/oracle/oracle-exception | grep  '(xbeg parameters:' ; ssh-agent -k"
+  }
+  
   file {
     type => "applogs"
     path => "<%= node['logstash']['application_logs_path_pattern'] %>"
@@ -66,13 +71,19 @@ filter {
 
  if [type] == "oradebuglogs" {
    grok {
-     match => {"message" => ".*?\ .*?\ .*?\ (?<ora-host>.*?)\ extproc\:\ ((?<oratimestamp>\d{2}\.\d{2}\.\d{4}\ \d{2}\:\d{2}\:\d{2}\.\d{6})~(?<ora-db-name>.*?)~(?<ora-session-user>.*?)~)?(?<ora-session-id>.*?)~(?<ora-id-call>.*?)~(?<ora-id-instance>.*?)~(?<ora-app-code>.*?)~(?<ora-context>.*?)~(?<ora-debug-level>.*?)~(?<ora-mod-code>.*?)~(?<ora-debug-message>.*)"}
+     match => {"message" => ".*?\ .*?\ .*?\ (?<ora-host>.*?)\ extproc\:\ ((?<oratimestamp>\d{2}\.\d{2}\.\d{4}\ \d{2}\:\d{2}\:\d{2}\.\d{6})~(?<ora-db-name>.*?)~(?<ora-session-user>.*?)~)?(?<ora-session-id>.*?)~(?<ora-id-call>.*?)~(?<ora-id-instance>.*?)~(?<ora-app-code>.*?)~(?<ora-partyid>.*?)~(?<ora-debug-level>.*?)~(?<ora-mod-code>.*?)~(?<ora-debug-message>.*)"}
      break_on_match => false
    }
- }  
+ }
  if [type] == "oraexceptlogs" {
    grok {
-     match => {"message" => ".*?\ .*?\ .*?\ (?<ora-host>.*?)\ extproc\:\ ((?<oratimestamp>\d{2}\.\d{2}\.\d{4}\ \d{2}\:\d{2}\:\d{2}\.\d{6})~(?<ora-db-name>.*?)~(?<ora-session-user>.*?)~)?(?<ora-session-id>.*?)~(?<ora-id-call>.*?)~(?<ora-id-instance>.*?)~(?<ora-app-code>.*?)~(?<ora-context>.*?)~(?<ora-except-id>.*?)~(?<ora-sqlcode>.*?)~(?<ora-sqlerrmsg>.*?)~(?<ora-except-text>.*?)~(?<ora-except-callstack>.*)~(?<ora-except-backtrace>.*)"}
+     match => {"message" => ".*?\ .*?\ .*?\ (?<ora-host>.*?)\ extproc\:\ ((?<oratimestamp>\d{2}\.\d{2}\.\d{4}\ \d{2}\:\d{2}\:\d{2}\.\d{6})~(?<ora-db-name>.*?)~(?<ora-session-user>.*?)~)?(?<ora-session-id>.*?)~(?<ora-id-call>.*?)~(?<ora-id-instance>.*?)~(?<ora-app-code>.*?)~(?<ora-partyid>.*?)~(?<ora-except-id>.*?)~(?<ora-sqlcode>.*?)~(?<ora-sqlerrmsg>.*?)~(?<ora-except-text>.*?)~(?<ora-except-callstack>.*)~(?<ora-except-backtrace>.*)"}
+     break_on_match => false
+   }
+ }
+ if [type] == "oraexceptparamlogs" {
+   grok {
+     match => {"message" => ".*?\ .*?\ .*?\ (?<ora-host>.*?)\ extproc\:\ (?<oratimestamp>\d{2}\.\d{2}\.\d{4}\ \d{2}\:\d{2}\:\d{2}\.\d{6})~(?<ora-db-name>.*?)~(?<ora-session-user>.*?)~(?<ora-session-id>.*?)~(?<ora-id-call>.*?)~(?<ora-id-instance>.*?)~(?<ora-app-code>.*?)~(?<ora-partyid>.*?)~(?<ora-except-id>.*?)~(?<ora-package-name>.*?)~(?<ora-method-name>.*?)~(?<ora-method-params>.*)"}
      break_on_match => false
    }
  }
@@ -99,7 +110,7 @@ output {
    elasticsearch {
      hosts=> ["<%= node['elasticsearch']['networkhost'] %>:9200"]
      index => "<%= node.chef_environment %>-mw-payara-logs-%{+YYYY.MM.dd}"
-   }
+  }
  }
 
  if [type] == "oradebuglogs" {
@@ -109,12 +120,11 @@ output {
   }
  }
 
- if [type] == "oraexceptlogs" {
+ if [type] in  ["oraexceptlogs", "oraexceptparamlogs"]  {
   elasticsearch {
      hosts=> ["<%= node['elasticsearch']['networkhost'] %>:9200"]
      index => "<%= node.chef_environment %>-oracle-logs-%{+YYYY.MM.dd}"
   }
  }
-
 }
 

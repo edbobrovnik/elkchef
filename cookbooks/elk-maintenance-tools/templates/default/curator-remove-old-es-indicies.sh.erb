@@ -2,6 +2,7 @@
 #
 # The script is expected to be scheduled and be launched periodically to remove outdated ElasticSearch indicies.
 #
-/usr/local/bin/curator --host <%= node["elasticsearch"]["networkhost"] %> delete indices --older-than <%= node["elk-maintenance-tools"]["keeplogs-n-days"] %> --time-unit days  --timestring '%Y.%m.%d'  --prefix dv0-
+/usr/local/bin/curator --host <%= node["elasticsearch"]["networkhost"] %> delete indices --older-than <%= node["elk-maintenance-tools"]["keeplogs-n-days"] %> --time-unit days  --timestring '%Y.%m.%d'  --prefix <%= node["elasticsearch"]["envname"].downcase %>-
 /usr/local/bin/curator --host <%= node["elasticsearch"]["networkhost"] %> delete indices --older-than <%= node["elk-maintenance-tools"]["keeplogs-n-days"] %>  --time-unit days  --timestring '%d-%m-%Y'  --prefix logs-
 /usr/local/bin/curator --host <%= node["elasticsearch"]["networkhost"] %> delete indices --older-than  <%= node["elk-maintenance-tools"]["keeplogs-n-days"] %> --time-unit days  --timestring '%Y.%m.%d'  --prefix .marvel-es
+
