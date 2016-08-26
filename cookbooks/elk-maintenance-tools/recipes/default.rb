@@ -12,8 +12,8 @@ template '/usr/local/bin/curator-remove-old-es-indicies.sh' do
 end
 
 cron 'curator_schedule' do
-  minute '17'
-  hour '20'
+  minute '18'
+  hour '18'
   day '*'
   weekday '*'
   month '*'
