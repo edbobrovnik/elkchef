@@ -1,0 +1,436 @@
+[
+  {
+    "_id": "DV0-DASHBOARD",
+    "_type": "dashboard",
+    "_source": {
+      "title": "DV0-DASHBOARD",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":6,\"columns\":[\"tags\",\"message\"],\"id\":\"DV0-APPS-HEARTBEAT\",\"panelIndex\":3,\"row\":1,\"size_x\":5,\"size_y\":3,\"sort\":[\"@timestamp\",\"desc\"],\"type\":\"search\"},{\"col\":1,\"id\":\"DV0-MW-LOG-ACTIVITY\",\"panelIndex\":4,\"row\":1,\"size_x\":5,\"size_y\":3,\"type\":\"visualization\"},{\"id\":\"DV0-MW-LOGS\",\"type\":\"search\",\"panelIndex\":6,\"size_x\":12,\"size_y\":7,\"col\":1,\"row\":4,\"columns\":[\"logtimestamp\",\"severity\",\"thread\",\"session_id\",\"application\",\"javaclass\",\"logmessage\"],\"sort\":[\"logtimestamp\",\"desc\"]}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{\"P-4\":{\"vis\":{\"legendOpen\":false}}}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "DV0-REST-DASHBOARD",
+    "_type": "dashboard",
+    "_source": {
+      "title": "DV0-REST-DASHBOARD",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"columns\":[\"rest-httpcode\",\"rest-url\",\"session_id\",\"rest-response-time\",\"rest-cpu\",\"host\",\"message\"],\"id\":\"DV0-REST-LOG\",\"panelIndex\":1,\"row\":5,\"size_x\":12,\"size_y\":6,\"sort\":[\"@timestamp\",\"desc\"],\"type\":\"search\"},{\"col\":8,\"id\":\"DV0-MW-REST-ENDPOINT_STATS\",\"panelIndex\":2,\"row\":1,\"size_x\":5,\"size_y\":4,\"type\":\"visualization\"},{\"col\":1,\"id\":\"DV0-MW-REST-ENDPOINT-AVG-STATS\",\"panelIndex\":3,\"row\":1,\"size_x\":7,\"size_y\":4,\"type\":\"visualization\"}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "DV0-APP-ORACLE-DASHBOARD",
+    "_type": "dashboard",
+    "_source": {
+      "title": "DV0-APP-ORACLE-DASHBOARD",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"columns\":[\"oratimestamp\",\"ora-db-name\",\"ora-session-user\",\"ora-session-id\",\"ora-id-call\",\"ora-id-instance\",\"ora-app-code\",\"ora-debug-level\",\"ora-mod-code\",\"ora-debug-message\"],\"id\":\"DV0-ORACLE-DEBUG-LOG\",\"panelIndex\":1,\"row\":1,\"size_x\":12,\"size_y\":4,\"sort\":[\"@timestamp\",\"desc\"],\"type\":\"search\"},{\"col\":1,\"columns\":[\"logtimestamp\",\"severity\",\"thread\",\"session_id\",\"application\",\"javaclass\",\"logmessage\"],\"id\":\"DV0-MW-LOGS\",\"panelIndex\":2,\"row\":8,\"size_x\":12,\"size_y\":5,\"sort\":[\"@timestamp\",\"desc\"],\"type\":\"search\"},{\"id\":\"DV0-ORACLE-EXCEPT-LOG\",\"type\":\"search\",\"panelIndex\":3,\"size_x\":12,\"size_y\":3,\"col\":1,\"row\":5,\"columns\":[\"_source\"],\"sort\":[\"@timestamp\",\"desc\"]}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"$state\":{\"store\":\"appState\"},\"meta\":{\"alias\":null,\"disabled\":false,\"index\":\"dv0-oracle-*\",\"key\":\"tags\",\"negate\":true,\"value\":\"_grokparsefailure\"},\"query\":{\"match\":{\"tags\":{\"query\":\"_grokparsefailure\",\"type\":\"phrase\"}}}},{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "DV0-ORACLE-DASHBOARD",
+    "_type": "dashboard",
+    "_source": {
+      "title": "DV0-ORACLE-DASHBOARD",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"id\":\"DV0-ORACLE-DEBUG-LOG\",\"type\":\"search\",\"panelIndex\":1,\"size_x\":12,\"size_y\":4,\"col\":1,\"row\":5,\"columns\":[\"oratimestamp\",\"ora-db-name\",\"ora-session-user\",\"ora-session-id\",\"ora-id-call\",\"ora-id-instance\",\"ora-app-code\",\"ora-debug-level\",\"ora-mod-code\",\"ora-debug-message\"],\"sort\":[\"@timestamp\",\"desc\"]},{\"id\":\"DV0-ORACLE-EXCEPT-LOG\",\"type\":\"search\",\"panelIndex\":1,\"size_x\":12,\"size_y\":4,\"col\":1,\"row\":1,\"columns\":[\"oratimestamp\",\"ora-db-name\",\"ora-session-user\",\"ora-session-id\",\"ora-id-call\",\"ora-id-instance\",\"ora-app-code\",\"ora-context\",\"ora-except-id\",\"ora-sqlcode\",\"ora-sqlerrmsg\",\"ora-except-callstack\",\"ora-except-backtrace\"],\"sort\":[\"@timestamp\",\"desc\"]}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "DV0-CBS-DASHBOARD",
+    "_type": "dashboard",
+    "_source": {
+      "title": "DV0-CBS-DASHBOARD",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[\n  {\n    \"id\": \"DV0-CBS-DAOCALL-AVG-STATS\",\n    \"type\": \"visualization\",\n    \"panelIndex\": 1,\n    \"size_x\": 7,\n    \"size_y\": 4,\n    \"col\": 1,\n    \"row\": 1\n  },\n  {\n    \"id\": \"DV0-CBS-DAOCALL-STATS\",\n    \"type\": \"visualization\",\n    \"panelIndex\": 2,\n    \"size_x\": 5,\n    \"size_y\": 4,\n    \"col\": 8,\n    \"row\": 1\n  }\n]",
+      "optionsJSON": "{\n  \"darkTheme\": false\n}",
+      "uiStateJSON": "{}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "DV0-ACTIVATION-DASHBOARD",
+    "_type": "dashboard",
+    "_source": {
+      "title": "DV0-ACTIVATION-DASHBOARD",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"col\":1,\"columns\":[\"tel-number\",\"sms-base64\"],\"id\":\"DV0-SMS-ACTIVATION-RECORDS\",\"panelIndex\":1,\"row\":5,\"size_x\":12,\"size_y\":3,\"sort\":[\"@timestamp\",\"desc\"],\"type\":\"search\"},{\"id\":\"DV0-EMAIL-ACTIVATION-RECORDS\",\"type\":\"search\",\"panelIndex\":2,\"size_x\":12,\"size_y\":4,\"col\":1,\"row\":1,\"columns\":[\"email-to-addr\",\"email-base64-text\"],\"sort\":[\"@timestamp\",\"desc\"]}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "DV0-SERVER-LOGS-DASHBOARD",
+    "_type": "dashboard",
+    "_source": {
+      "title": "DV0-SERVER-LOGS-DASHBOARD",
+      "hits": 0,
+      "description": "",
+      "panelsJSON": "[{\"id\":\"DV0-PAYARA-LOGS\",\"type\":\"search\",\"panelIndex\":1,\"size_x\":12,\"size_y\":4,\"col\":1,\"row\":1,\"columns\":[\"_source\"],\"sort\":[\"@timestamp\",\"desc\"]}]",
+      "optionsJSON": "{\"darkTheme\":false}",
+      "uiStateJSON": "{}",
+      "version": 1,
+      "timeRestore": false,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}]}"
+      }
+    }
+  },
+  {
+    "_id": "DV0-MW-LOGS",
+    "_type": "search",
+    "_source": {
+      "title": "DV0-MW-LOGS",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "logtimestamp",
+        "severity",
+        "thread",
+        "session_id",
+        "application",
+        "javaclass",
+        "logmessage"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"dv0-mw-client-backend-*\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[],\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"require_field_match\":false,\"fragment_size\":2147483647}}"
+      }
+    }
+  },
+  {
+    "_id": "DV0-CBS-DAOCALLS",
+    "_type": "search",
+    "_source": {
+      "title": "DV0-CBS-DAOCALLS",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "_source"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"dv0-mw-client-backend-*\",\"query\":{\"query_string\":{\"query\":\"_exists_:cbs-daomethod-call\",\"analyze_wildcard\":true}},\"filter\":[],\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"require_field_match\":false,\"fragment_size\":2147483647}}"
+      }
+    }
+  },
+  {
+    "_id": "DV0-REST-LOG",
+    "_type": "search",
+    "_source": {
+      "title": "DV0-REST-LOG",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "rest-httpcode",
+        "rest-url",
+        "session_id",
+        "rest-response-time",
+        "rest-cpu",
+        "host",
+        "message"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"dv0-mw-client-backend-*\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"_exists_:rest-httpcode\"}},\"filter\":[],\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"require_field_match\":false,\"fragment_size\":2147483647}}"
+      }
+    }
+  },
+  {
+    "_id": "DV0-SMS-ACTIVATION-RECORDS",
+    "_type": "search",
+    "_source": {
+      "title": "DV0-SMS-ACTIVATION-RECORDS",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "_source"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"dv0-mw-client-backend-*\",\"query\":{\"query_string\":{\"query\":\"_exists_:tel-number\",\"analyze_wildcard\":true}},\"filter\":[],\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"require_field_match\":false,\"fragment_size\":2147483647}}"
+      }
+    }
+  },
+  {
+    "_id": "DV0-APPS-HEARTBEAT",
+    "_type": "search",
+    "_source": {
+      "title": "DV0-APPS-HEARTBEAT",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "tags",
+        "message"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"dv0-heartbeat\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[],\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"require_field_match\":false,\"fragment_size\":2147483647}}"
+      }
+    }
+  },
+  {
+    "_id": "DV0-EMAIL-ACTIVATION-RECORDS",
+    "_type": "search",
+    "_source": {
+      "title": "DV0-EMAIL-ACTIVATION-RECORDS",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "_source"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"dv0-mw-client-backend-*\",\"query\":{\"query_string\":{\"query\":\"_exists_:email-to-addr\",\"analyze_wildcard\":true}},\"filter\":[],\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"require_field_match\":false,\"fragment_size\":2147483647}}"
+      }
+    }
+  },
+  {
+    "_id": "DV0-SMS-ACTIVATION-SMS-BASE64",
+    "_type": "search",
+    "_source": {
+      "title": "DV0-SMS-ACTIVATION-SMS-BASE64",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "tel-number",
+        "sms-base64"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"dv0-mw-client-backend-*\",\"query\":{\"query_string\":{\"query\":\"_exists_:tel-number\",\"analyze_wildcard\":true}},\"filter\":[{\"$state\":{\"store\":\"appState\"},\"meta\":{\"alias\":null,\"disabled\":false,\"index\":\"dv0-mw-*\",\"key\":\"javaclass\",\"negate\":false,\"value\":\"redone.mdg.LoggingFilter\"},\"query\":{\"match\":{\"javaclass\":{\"query\":\"redone.mdg.LoggingFilter\",\"type\":\"phrase\"}}}}],\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"require_field_match\":false,\"fragment_size\":2147483647}}"
+      }
+    }
+  },
+  {
+    "_id": "DV0-ORACLE-DEBUG-LOG",
+    "_type": "search",
+    "_source": {
+      "title": "DV0-ORACLE-DEBUG-LOG",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "oratimestamp",
+        "ora-db-name",
+        "ora-session-user",
+        "ora-session-id",
+        "ora-id-call",
+        "ora-id-instance",
+        "ora-app-code",
+        "ora-debug-level",
+        "ora-mod-code",
+        "ora-debug-message"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"dv0-oracle-*\",\"filter\":[{\"meta\":{\"negate\":true,\"index\":\"dv0-oracle-*\",\"key\":\"tags\",\"value\":\"_grokparsefailure\",\"disabled\":false,\"alias\":null},\"query\":{\"match\":{\"tags\":{\"query\":\"_grokparsefailure\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}],\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"require_field_match\":false,\"fragment_size\":2147483647},\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}"
+      }
+    }
+  },
+  {
+    "_id": "DV0-ORACLE-EXCEPT-LOG",
+    "_type": "search",
+    "_source": {
+      "title": "DV0-ORACLE-EXCEPT-LOG",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "_source"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"dv0-oracle-*\",\"filter\":[{\"meta\":{\"negate\":false,\"index\":\"dv0-oracle-*\",\"key\":\"type\",\"value\":\"oraexceptlogs\",\"disabled\":false,\"alias\":null},\"query\":{\"match\":{\"type\":{\"query\":\"oraexceptlogs\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}},{\"meta\":{\"negate\":true,\"index\":\"dv0-oracle-*\",\"key\":\"tags\",\"value\":\"_grokparsefailure\",\"disabled\":false,\"alias\":null},\"query\":{\"match\":{\"tags\":{\"query\":\"_grokparsefailure\",\"type\":\"phrase\"}}},\"$state\":{\"store\":\"appState\"}}],\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"require_field_match\":false,\"fragment_size\":2147483647},\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}}}"
+      }
+    }
+  },
+  {
+    "_id": "DV0-PAYARA-LOGS",
+    "_type": "search",
+    "_source": {
+      "title": "DV0-PAYARA-LOGS",
+      "description": "",
+      "hits": 0,
+      "columns": [
+        "logtimestamp",
+        "severity",
+        "thread",
+        "session_id",
+        "application",
+        "javaclass",
+        "logmessage"
+      ],
+      "sort": [
+        "@timestamp",
+        "desc"
+      ],
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"dv0-mw-payara-*\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[],\"highlight\":{\"pre_tags\":[\"@kibana-highlighted-field@\"],\"post_tags\":[\"@/kibana-highlighted-field@\"],\"fields\":{\"*\":{}},\"require_field_match\":false,\"fragment_size\":2147483647}}"
+      }
+    }
+  },
+  {
+    "_id": "DV0-CBS-DAOCALL-STATS",
+    "_type": "visualization",
+    "_source": {
+      "title": "DV0-CBS-DAOCALL-STATS",
+      "visState": "{\"title\":\"DV0-CBS-DAOCALL-STATS\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false},\"aggs\":[{\"id\":\"2\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"cbs-method-resp-time\"}},{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"3\",\"type\":\"median\",\"schema\":\"metric\",\"params\":{\"field\":\"cbs-method-resp-time\",\"percents\":[50]}},{\"id\":\"4\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"cbs-daomethod-call.raw\",\"size\":100,\"order\":\"desc\",\"orderBy\":\"2\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"dv0-mw-client-backend-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "DV0-CBS-DAOCALL-AVG-STATS",
+    "_type": "visualization",
+    "_source": {
+      "title": "DV0-CBS-DAOCALL-AVG-STATS",
+      "visState": "{\"title\":\"DV0-CBS-DAOCALL-AVG-STATS\",\"type\":\"line\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"showCircles\":true,\"smoothLines\":false,\"interpolate\":\"linear\",\"scale\":\"linear\",\"drawLinesBetweenPoints\":true,\"radiusRatio\":9,\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"cbs-method-resp-time\"}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"s\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"3\",\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"cbs-daomethod-call.raw\",\"size\":18,\"order\":\"desc\",\"orderBy\":\"_term\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"dv0-mw-client-backend-*\",\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "DV0-ACTIVATION-MARKUP",
+    "_type": "visualization",
+    "_source": {
+      "title": "DV0-ACTIVATION-MARKUP",
+      "visState": "{\"title\":\"DV0-ACTIVATION-MARKUP\",\"type\":\"markdown\",\"params\":{\"markdown\":\"on unix machines use the following approach to decode base64:\\n\\necho hash-string | base64 --decode\\n\\ne.g for email\\n\\necho hash-string | base64 --decode > email-in-html.html\"},\"aggs\":[],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"query\":{\"query_string\":{\"query\":\"*\",\"analyze_wildcard\":true}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "DV0-MW-LOG-ACTIVITY",
+    "_type": "visualization",
+    "_source": {
+      "title": "DV0-MW-LOG-ACTIVITY",
+      "visState": "{\"title\":\"DV0-MW-LOG-ACTIVITY\",\"type\":\"histogram\",\"params\":{\"shareYAxis\":true,\"addTooltip\":true,\"addLegend\":true,\"scale\":\"linear\",\"mode\":\"grouped\",\"times\":[],\"addTimeMarker\":false,\"defaultYExtents\":false,\"setYExtents\":false,\"yAxis\":{}},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{}},{\"id\":\"2\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"auto\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{},\"customLabel\":\"log records per 30 seconds\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"index\":\"dv0-mw-client-backend-*\",\"query\":{\"query_string\":{\"analyze_wildcard\":true,\"query\":\"*\"}},\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "DV0-MW-REST-ENDPOINT-AVG-STATS",
+    "_type": "visualization",
+    "_source": {
+      "title": "DV0-MW-REST-ENDPOINT-AVG-STATS",
+      "visState": "{\"title\":\"DV0-MW-REST-ENDPOINT-AVG-STATS\",\"type\":\"line\",\"params\":{\"shareYAxis\":true,\"addTooltip\":false,\"addLegend\":true,\"showCircles\":false,\"smoothLines\":false,\"interpolate\":\"linear\",\"scale\":\"linear\",\"drawLinesBetweenPoints\":true,\"radiusRatio\":9,\"times\":[],\"addTimeMarker\":true,\"defaultYExtents\":true,\"setYExtents\":false,\"yAxis\":{\"max\":250,\"min\":10}},\"aggs\":[{\"id\":\"1\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"rest-response-time\"}},{\"id\":\"3\",\"type\":\"date_histogram\",\"schema\":\"segment\",\"params\":{\"field\":\"@timestamp\",\"interval\":\"m\",\"customInterval\":\"2h\",\"min_doc_count\":1,\"extended_bounds\":{}}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"group\",\"params\":{\"field\":\"rest-url\",\"size\":100,\"order\":\"desc\",\"orderBy\":\"1\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{\"vis\":{\"legendOpen\":true}}",
+      "description": "",
+      "savedSearchId": "DV0-REST-LOG",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[]}"
+      }
+    }
+  },
+  {
+    "_id": "DV0-MW-REST-ENDPOINT_STATS",
+    "_type": "visualization",
+    "_source": {
+      "title": "DV0-MW-REST-ENDPOINT_STATS",
+      "visState": "{\"title\":\"DV0-MW-REST-ENDPOINT_STATS\",\"type\":\"table\",\"params\":{\"perPage\":10,\"showPartialRows\":false,\"showMeticsAtAllLevels\":false},\"aggs\":[{\"id\":\"1\",\"type\":\"count\",\"schema\":\"metric\",\"params\":{\"customLabel\":\"number req/resp\"}},{\"id\":\"2\",\"type\":\"terms\",\"schema\":\"bucket\",\"params\":{\"field\":\"rest-url\",\"size\":25,\"order\":\"desc\",\"orderBy\":\"_term\"}},{\"id\":\"3\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"rest-response-time\",\"customLabel\":\"avg response time ms\"}},{\"id\":\"4\",\"type\":\"median\",\"schema\":\"metric\",\"params\":{\"field\":\"rest-response-time\",\"percents\":[50],\"customLabel\":\"med response time ms\"}},{\"id\":\"5\",\"type\":\"avg\",\"schema\":\"metric\",\"params\":{\"field\":\"rest-cpu\",\"customLabel\":\"avg-rest-cpu-us\"}}],\"listeners\":{}}",
+      "uiStateJSON": "{}",
+      "description": "",
+      "savedSearchId": "DV0-REST-LOG",
+      "version": 1,
+      "kibanaSavedObjectMeta": {
+        "searchSourceJSON": "{\"filter\":[]}"
+      }
+    }
+  }
+]
